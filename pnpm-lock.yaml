@@ -2009,6 +2009,22 @@ importers:
         specifier: ^6.7.0
         version: 6.7.0(@swc/core@1.3.96)(postcss@8.4.31)(typescript@5.2.2)
 
+  packages/v4-sdk:
+    dependencies:
+      '@pancakeswap/chains':
+        specifier: workspace:*
+        version: link:../chains
+    devDependencies:
+      '@pancakeswap/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@pancakeswap/utils':
+        specifier: workspace:*
+        version: link:../utils
+      tsup:
+        specifier: ^6.7.0
+        version: 6.7.0(@swc/core@1.3.96)(postcss@8.4.31)(typescript@5.2.2)
+
   packages/wagmi:
     devDependencies:
       '@blocto/sdk':
