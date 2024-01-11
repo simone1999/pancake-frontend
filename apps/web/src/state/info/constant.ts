@@ -180,6 +180,6 @@ export const subgraphTokenSymbol = {
   '0x11727E5b7Fa33FF4D380F3E7E877F19876c25b97': 'mdLP',
 }
 
-export const checkIsStableSwap = () => window.location.href.includes('stableSwap')
+export const checkIsStableSwap = () => typeof window !== 'undefined' && window.location.href.includes('stableSwap')
 
 export const ChainLinkSupportChains = [ChainId.BSC, ChainId.BSC_TESTNET]
