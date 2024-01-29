@@ -9,7 +9,7 @@ import { useLockApproveCallback } from '../useLockAllowance'
 import { useWriteIncreaseLockAmountCallback } from './useWriteIncreaseLockAmountCallback'
 import { useWriteLockCallback } from './useWriteLockCallback'
 
-export const useWriteWithApproveCallback = () => {
+export const useWriteWithApproveCallback = (onDismiss?: () => void) => {
   const setTxHash = useSetAtom(cakeLockTxHashAtom)
   const setStatus = useSetAtom(approveAndLockStatusAtom)
   const { cakeLockAmount } = useLockCakeData()
@@ -33,10 +33,12 @@ export const useWriteWithApproveCallback = () => {
           }
           setStatus(ApproveAndLockStatus.LOCK_CAKE)
           await write()
+          onDismiss?.()
           return
         }
         if (approvalState === ApprovalState.APPROVED) {
           await write()
+          onDismiss?.()
         }
       } catch (error) {
         console.error(error)
@@ -45,12 +47,12 @@ export const useWriteWithApproveCallback = () => {
         }
       }
     },
-    [approvalState, approveCallback, handleCancel, setStatus, setTxHash, waitForTransaction],
+    [approvalState, approveCallback, handleCancel, onDismiss, setStatus, setTxHash, waitForTransaction],
   )
 }
 
-export const useWriteApproveAndLockCallback = () => {
-  const withApprove = useWriteWithApproveCallback()
+export const useWriteApproveAndLockCallback = (onDismiss?: () => void) => {
+  const withApprove = useWriteWithApproveCallback(onDismiss)
   const lockCake = useWriteLockCallback()
 
   return useCallback(async () => {
@@ -58,8 +60,8 @@ export const useWriteApproveAndLockCallback = () => {
   }, [withApprove, lockCake])
 }
 
-export const useWriteApproveAndIncreaseLockAmountCallback = () => {
-  const withApprove = useWriteWithApproveCallback()
+export const useWriteApproveAndIncreaseLockAmountCallback = (onDismiss?: () => void) => {
+  const withApprove = useWriteWithApproveCallback(onDismiss)
   const increaseLockAmount = useWriteIncreaseLockAmountCallback()
 
   return useCallback(async () => {
