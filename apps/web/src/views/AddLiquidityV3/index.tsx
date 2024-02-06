@@ -3,50 +3,50 @@ import { CommonBasesType } from 'components/SearchModal/types'
 
 import { Currency, NATIVE, WNATIVE } from '@pancakeswap/sdk'
 import {
-  FlexGap,
-  AutoColumn,
-  CardBody,
-  Card,
   AddIcon,
-  PreTitle,
+  AutoColumn,
+  Card,
+  CardBody,
   DynamicSection,
-  RefreshIcon,
+  FlexGap,
   IconButton,
+  PreTitle,
+  RefreshIcon,
 } from '@pancakeswap/uikit'
 
 import { FeeAmount } from '@pancakeswap/v3-sdk'
 import { useCallback, useEffect, useMemo } from 'react'
 
-import currencyId from 'utils/currencyId'
-import { useRouter } from 'next/router'
 import { Trans, useTranslation } from '@pancakeswap/localization'
+import { useRouter } from 'next/router'
+import currencyId from 'utils/currencyId'
 
-import Page from 'views/Page'
 import { AppHeader } from 'components/App'
-import { styled } from 'styled-components'
 import { atom, useAtom } from 'jotai'
+import { styled } from 'styled-components'
+import Page from 'views/Page'
 
-import { useCurrency } from 'hooks/Tokens'
-import useStableConfig, { StableConfigContext } from 'views/Swap/hooks/useStableConfig'
-import AddStableLiquidity from 'views/AddLiquidity/AddStableLiquidity'
-import AddLiquidity from 'views/AddLiquidity'
 import { usePreviousValue } from '@pancakeswap/hooks'
+import { useCurrency } from 'hooks/Tokens'
+import AddLiquidity from 'views/AddLiquidity'
+import AddStableLiquidity from 'views/AddLiquidity/AddStableLiquidity'
+import useStableConfig, { StableConfigContext } from 'views/Swap/hooks/useStableConfig'
 
-import noop from 'lodash/noop'
 import { useActiveChainId } from 'hooks/useActiveChainId'
-import { useAddLiquidityV2FormDispatch } from 'state/mint/reducer'
+import noop from 'lodash/noop'
 import { resetMintState } from 'state/mint/actions'
+import { useAddLiquidityV2FormDispatch } from 'state/mint/reducer'
 import { safeGetAddress } from 'utils'
 import FeeSelector from './formViews/V3FormView/components/FeeSelector'
 
-import V3FormView from './formViews/V3FormView'
-import { HandleFeePoolSelectFn, SELECTOR_TYPE } from './types'
-import { StableV3Selector } from './components/StableV3Selector'
-import StableFormView from './formViews/StableFormView'
-import { V2Selector } from './components/V2Selector'
-import V2FormView from './formViews/V2FormView'
 import { AprCalculator } from './components/AprCalculator'
+import { StableV3Selector } from './components/StableV3Selector'
+import { V2Selector } from './components/V2Selector'
+import StableFormView from './formViews/StableFormView'
+import V2FormView from './formViews/V2FormView'
+import V3FormView from './formViews/V3FormView'
 import { useCurrencyParams } from './hooks/useCurrencyParams'
+import { HandleFeePoolSelectFn, SELECTOR_TYPE } from './types'
 
 export const BodyWrapper = styled(Card)`
   border-radius: 24px;
@@ -73,8 +73,8 @@ export const ResponsiveTwoColumns = styled.div`
 const selectTypeAtom = atom(SELECTOR_TYPE.V3)
 
 interface UniversalAddLiquidityPropsType {
-  currencyIdA: string
-  currencyIdB: string
+  currencyIdA?: string
+  currencyIdB?: string
   isV2?: boolean
   preferredSelectType?: SELECTOR_TYPE
   preferredFeeAmount?: FeeAmount
@@ -156,7 +156,7 @@ export function UniversalAddLiquidity({
             pathname: router.pathname,
             query: {
               ...router.query,
-              currency: [idA],
+              currency: [idA!],
             },
           },
           undefined,
@@ -168,7 +168,7 @@ export function UniversalAddLiquidity({
             pathname: router.pathname,
             query: {
               ...router.query,
-              currency: [idA, idB],
+              currency: [idA!, idB!],
             },
           },
           undefined,
@@ -188,7 +188,7 @@ export function UniversalAddLiquidity({
             pathname: router.pathname,
             query: {
               ...router.query,
-              currency: [idB],
+              currency: [idB!],
             },
           },
           undefined,
@@ -200,7 +200,7 @@ export function UniversalAddLiquidity({
             pathname: router.pathname,
             query: {
               ...router.query,
-              currency: [idA, idB],
+              currency: [idA!, idB!],
             },
           },
           undefined,
@@ -250,7 +250,7 @@ export function UniversalAddLiquidity({
             pathname: router.pathname,
             query: {
               ...router.query,
-              currency: [currencyIdA, currencyIdB, newFeeAmount.toString()],
+              currency: [currencyIdA!, currencyIdB!, newFeeAmount.toString()!],
             },
           },
           undefined,
@@ -262,7 +262,7 @@ export function UniversalAddLiquidity({
             pathname: router.pathname.replace('/v2', ''),
             query: {
               ...router.query,
-              currency: [currencyIdA, currencyIdB],
+              currency: [currencyIdA!, currencyIdB!],
             },
           },
           undefined,

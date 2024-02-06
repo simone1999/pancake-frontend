@@ -12,6 +12,7 @@ const RemoveLiquidityPage = () => {
 }
 
 RemoveLiquidityPage.chains = CHAIN_IDS
+RemoveLiquidityPage.screen = true
 
 export default RemoveLiquidityPage
 
@@ -23,7 +24,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { tokenId } = params
+  const tokenId = params?.tokenId
 
   const isNumberReg = /^\d+$/
 

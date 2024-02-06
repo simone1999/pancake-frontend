@@ -34,9 +34,9 @@ import { useV3MintActionHandlers } from '../formViews/V3FormView/form/hooks/useV
 import { useV3FormState } from '../formViews/V3FormView/form/reducer'
 
 interface Props {
-  baseCurrency?: Currency
-  quoteCurrency?: Currency
-  feeAmount: number
+  baseCurrency?: Currency | null
+  quoteCurrency?: Currency | null
+  feeAmount?: number
   showTitle?: boolean
   showQuestion?: boolean
   allowApply?: boolean

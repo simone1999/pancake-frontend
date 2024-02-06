@@ -25,8 +25,8 @@ export function StableV3Selector({
 }: {
   selectorType: SELECTOR_TYPE
   feeAmount?: FeeAmount
-  currencyA: Currency
-  currencyB: Currency
+  currencyA?: Currency
+  currencyB?: Currency
   handleFeePoolSelect: HandleFeePoolSelectFn
 }) {
   const { t } = useTranslation()
