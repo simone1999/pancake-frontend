@@ -3142,5 +3142,8 @@
   "Min deposit USD": "Min deposit USD",
   "Savings": "Savings",
   "Be Our Top 100 Traders and Earn a 3% Trading Fee Rebate!": "Be Our Top 100 Traders and Earn a 3% Trading Fee Rebate!",
-  "Join Now": "Join Now"
+  "Join Now": "Join Now",
+  "Blocked address": "Blocked address",
+  "We have detected that this address is associated with a Prohibited Activity": "We have detected that this address is associated with a Prohibited Activity",
+  "If you believe that your address has been misclassified, please email": "If you believe that your address has been misclassified, please email"
 }
