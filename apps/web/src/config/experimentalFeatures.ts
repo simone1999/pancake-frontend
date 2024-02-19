@@ -25,7 +25,7 @@ export const EXPERIMENTAL_FEATURE_CONFIGS: ExperimentalFeatureConfigs = [
   },
   {
     feature: EXPERIMENTAL_FEATURES.UniversalRouter,
-    percentage: 0.05,
+    percentage: 1,
     whitelist: [],
   },
 ]
